@@ -1,1 +1,1 @@
-# TeachAI
+# Teach GPT
