@@ -1,5 +1,5 @@
-<div align="center">
 # TeachGPT🤖
+<div align="center">
 TeachGPT  is a groundbreaking open-source initiative focused on developing an AI-Powered Virtual Tutor. This innovative virtual tutor leverages the full potential of artificial intelligence to revolutionize the way we learn. The primary objective is to construct a Large Language Model(LLM) that dynamically adjusts to individual learning styles while delivering lifelike conversations through AI agents. This is complemented by seamless integration of speech recognition technology and the strategic incorporation of gamification methods 👩🏻‍💻 . 
 </div>
 
