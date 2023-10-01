@@ -1,12 +1,11 @@
-import os 
+from pathlib import Path
 import torch
 from chromadb.config import Settings
-# SOURCE DOCUMENT DIRECTORY
-SOURCE_DIR = os.path.join(os.path.dirname(__file__), "documents")
-# To store models from HuggingFace
-MODEL_DIRECTORY = os.path.join(os.path.dirname(__file__), "models")
-# Store Vector Embeddings in db directory
-PERSIST_DIRECTORY = os.path.join(os.path.dirname(__file__), "db")
+
+BASE_DIR = Path(__file__).parent  # Get the parent directory of this script
+SOURCE_DIR = BASE_DIR / "documents"  # Define the source document directory
+MODEL_DIRECTORY = BASE_DIR / "models"  # Define the directory to store HuggingFace models
+PERSIST_DIRECTORY = BASE_DIR / "db"  # Define the directory for Vector Embeddings storage
 
 
 # MODELS 
