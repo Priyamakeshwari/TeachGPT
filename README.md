@@ -15,7 +15,7 @@ To get started with TeachGPT, follow these steps:
 
 ## Contributing 👥
 
-Contributions are welcome! If you have a dataset that you would like to add to DataStorehouse, please follow these steps:
+Contributions are welcome!  please follow these steps:
 
 1. Fork the TeachGPT repository to your own GitHub account.
 2. Clone the forked repository to your local machine.
