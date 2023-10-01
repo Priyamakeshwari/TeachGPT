@@ -22,7 +22,7 @@ Contributions are welcome! If you have a dataset that you would like to add to D
 3. Create a new branch for your changes: `git checkout -b feature-name`.
 4. Implement your changes and commit them with meaningful commit messages.
 5. Push your changes to your forked repository.
-6. Create a pull request (PR) to the main NeoGPT repository, describing your changes and the problem they solve.
+6. Create a pull request (PR) to the main TeachGPT repository, describing your changes and the problem they solve.
 
 Our team will review your PR, provide feedback, and merge it if it meets our guidelines.
 
