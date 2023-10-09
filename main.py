@@ -22,6 +22,18 @@ from config import (
 )
 
 def load_model(device_type:str = DEVICE_TYPE, model_id:str = MODEL_NAME, model_basename:str = MODEL_FILE, LOGGING=logging):
+    """
+    Load a language model.
+
+    Args:
+        device_type (str): The type of device to use ('cuda', 'mps', or 'cpu').
+        model_id (str): The ID of the model to load.
+        model_basename (str): The name of the model file.
+        LOGGING (logging): The logging object.
+
+    Returns:
+        LlamaCpp: The loaded language model.
+    """
     callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
     try:
         model_path = hf_hub_download(
@@ -51,6 +63,13 @@ def load_model(device_type:str = DEVICE_TYPE, model_id:str = MODEL_NAME, model_b
         LOGGING.info(f"Error {e}")
 
 def retriver(device_type:str = DEVICE_TYPE, LOGGING=logging):
+    """
+    Retrieve information using a language model and Chroma database.
+
+    Args:
+        device_type (str): The type of device to use ('cuda', 'mps', or 'cpu').
+        LOGGING (logging): The logging object.
+    """
     embeddings = HuggingFaceInstructEmbeddings(
         model_name=EMBEDDING_MODEL,
         model_kwargs={"device": DEVICE_TYPE},
