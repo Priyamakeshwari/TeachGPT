@@ -1,4 +1,5 @@
 import logging
+import csv
 from langchain.document_loaders import DirectoryLoader, PDFMinerLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceInstructEmbeddings
@@ -12,6 +13,17 @@ from config import (
     CHROMA_SETTINGS,
 )
 
+#TSV files loader function
+def load_tsv_file(your_tsv_file.tsv):
+    tsv_data = []
+    with open(your_tsv_file.tsv, 'r', newline='', encoding ='utf-8') as tsv_file:
+        reader = csv.DictReader(tsv_file,delimiter='\t')
+        
+        for row in reader:
+            tsv_data.append(row)
+    return tsv_data
+    
+    
 def load_docs(directory: str = SOURCE_DIR):
     """
     Loads documents from a specified directory.
@@ -51,6 +63,9 @@ def builder():
     logging.info("Building the database")
     documents = load_docs()
     docs = split_docs(documents)
+    
+     # Load TSV file using TSV loader function
+    tsv_data = load_tsv_file('your_tsv_file.tsv')
 
     embeddings = HuggingFaceInstructEmbeddings(
         model_name=EMBEDDING_MODEL,
@@ -62,6 +77,7 @@ def builder():
         embeddings,
         persist_directory=PERSIST_DIRECTORY,
         client_settings=CHROMA_SETTINGS,
+        tsv_data=tsv_data  # Pass the loaded TSV data here
 
     )
     logging.info(f"Loaded Documents to Chroma DB Successfully")
