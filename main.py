@@ -1,3 +1,4 @@
+!pip install langchain
 import logging
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import RetrievalQAWithSourcesChain
@@ -8,6 +9,9 @@ from langchain.vectorstores import Chroma
 from langchain.prompts import PromptTemplate
 from huggingface_hub import hf_hub_download
 from gpt4all import GPT4All
+
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
 
 from config import (
     PERSIST_DIRECTORY,
@@ -22,6 +26,8 @@ from config import (
 )
 
 def load_model(model_choice, device_type=DEVICE_TYPE, model_id=MODEL_NAME, model_basename=MODEL_FILE, LOGGING=logging):
+    
+      
     """
     Load a language model (either LlamaCpp or GPT4All).
 
@@ -64,6 +70,13 @@ def load_model(model_choice, device_type=DEVICE_TYPE, model_id=MODEL_NAME, model
         elif model_choice == 'GPT4All':
             gpt4all_model = GPT4All("orca-mini-3b.ggmlv3.q4_0.bin")
             return gpt4all_model
+        elif model_choice=='HuggingFace' :
+         tokenizer = AutoTokenizer.from_pretrained(model_id)
+         model = AutoModelForCausalLM.from_pretrained(model_id)
+         model.to(device_type)
+         LOGGING.info(f"Loaded Hugging Face model '{model_id}'")
+         return model
+      
         else:
             LOGGING.info("Invalid model choice. Choose 'LlamaCpp' or 'GPT4All'.")
     except Exception as e:
